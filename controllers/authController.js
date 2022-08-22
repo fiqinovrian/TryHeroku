@@ -1,3 +1,4 @@
+require('dotenv').config();
 const User = require('../models').User;
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
@@ -29,11 +30,12 @@ const register = async function (req, res) {
         }
         User.create(data)
         const email = req.body.email;
+        const baseRoute = process.env.APP_BASEROUTE;
         const mail = {
             from: 'storyfootball17@gmail.com',
             to: email,
             subject: 'Verifikasi',
-            text: `Link verifikasi:  <a href='http://localhost:3000/api/user/verify/${token}'>Klik Disini</a>`,
+            text: `Link verifikasi:  <a href='${baseRoute}/api/user/verify/${token}'>Klik Disini</a>`,
         }
 
         transporter.sendMail(mail, (err, info) => {

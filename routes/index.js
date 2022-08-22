@@ -40,18 +40,10 @@ router.use(function timeLog(req, res, next) {
     next()
 });
 
-//routing untuk users
-router.get('/api/', (req, res) => {
-    res.render('index')
-});
-
-router.get('/api/user/register', (req, res) => {
-    res.render('register')
-});
-
-router.get('/api/user/login', (req, res) => {
-    res.render('login')
+router.get('/', (req, res) => {
+    return res.status(200).json('Aplikasi Platinum');
 })
+
 
 router.post('/api/user/register', auth.register);
 router.post('/api/user/login', auth.login);
